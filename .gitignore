@@ -9,10 +9,13 @@ x64
 *.bin
 wpop_*.txt
 out/
-build
+/build
 build-*/
 build_*/
 .project
 *.vcxproj.user
 tests/us-output/
 tests/regressiontest_UK_100th/
+
+# Please output directory
+plz-out

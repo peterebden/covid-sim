@@ -1,0 +1,3 @@
+[cpp]
+defaultoptcppflags = --std=c++17 -g3 -pipe -DDEBUG -Wall -Werror -fopenmp
+defaultoptcppflags = --std=c++17 -O3 -pipe -DNDEBUG -Wall -Werror -fopenmp

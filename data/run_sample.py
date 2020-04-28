@@ -53,6 +53,10 @@ def parse_args():
             "--covidsim",
             help="Location of CovidSim binary, if none specified will build")
     parser.add_argument(
+            "--cmake",
+            type=bool,
+            help="Whether to use cmake to build with (default plz)")
+    parser.add_argument(
             "--datadir",
             help="Directory at root of input data",
             default=script_path)
@@ -87,7 +91,7 @@ usa_territories = ["Alaska", "Hawaii", "Guam", "Virgin_Islands_US", "Puerto_Rico
 # Determine whether we need to build the tool or use a user supplied one:
 if args.covidsim is not None:
     exe = args.covidsim
-else:
+elif args.cmake:
     build_dir = os.path.join(args.outputdir, "build")
 
     # Ensure we do a clean build
@@ -107,6 +111,10 @@ else:
         exe = os.path.join(build_dir, "CovidSim")
 
     os.chdir(cwd)
+else:
+    # Ensure it is up-to-date. An explicit clean is not necessary with a correct build system.
+    subprocess.check_call(['plz', 'build', '//src:sim'])
+    exe = os.path.join('plz-out', 'bin', 'src', 'sim')
 
 # Ensure output directory exists
 os.makedirs(args.outputdir, exist_ok=True)
