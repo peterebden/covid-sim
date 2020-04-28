@@ -9,7 +9,7 @@ x64
 *.bin
 wpop_*.txt
 out/
-build
+/build
 build-*/
 build_*/
 .project
